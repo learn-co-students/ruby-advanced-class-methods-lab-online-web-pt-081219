@@ -1,3 +1,5 @@
+require 'pry'
+
 class Song
   attr_accessor :name, :artist_name
   @@all = []
@@ -45,10 +47,28 @@ class Song
     self.all.sort_by{|song| song.name}
   end
   
-  def self.new_from_filename(file_Name)
+  def self.new_from_filename(file_name)
+    info = file_name.split(" - ")
+
+    artist_name = info[0]
+    name = info[1].split(".mp3")[0]
+    song = self.new
+    song.name = name
+    song.artist_name = artist_name
+    
+    song
   end
   
-  def self.create_from_filename
+  def self.create_from_filename(file_name)
+    info = file_name.split(" - ")
+
+    artist_name = info[0]
+    name = info[1].split(".mp3")[0]
+    song = self.new
+    song.name = name
+    song.artist_name = artist_name
+    song.save
+    song
   end
   
   def self.destroy_all
@@ -57,3 +77,8 @@ class Song
   
 end
 
+filename = "Taylor Swift - Blank Space.mp3"
+song = Song.new_from_filename("Taylor Swift - Blank Space.mp3")
+
+puts song.name
+puts song.artist_name

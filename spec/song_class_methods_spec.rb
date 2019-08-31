@@ -2,6 +2,9 @@ require 'spec_helper'
 require 'pry'
 
 describe "Song Class Methods" do
+  before(:each) do
+    Song.all.clear
+  end
   describe '.create' do
     it 'instantiates and saves the song, and it returns the new song that was created' do
       song = Song.create
