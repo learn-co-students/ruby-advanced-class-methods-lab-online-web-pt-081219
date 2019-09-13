@@ -1,8 +1,6 @@
 class Song
   attr_accessor :name, :artist_name
   @@all = []
-  
-
 
   def self.all
     @@all
@@ -56,16 +54,24 @@ class Song
   end 
 
   
-  def self.create_from_filename
-    @@all << self 
-    save 
+  def self.create_from_filename (filename)
+     row = filename
+      data = row.split (" - ")
+      artist_name = data[0] 
+      song_name = data[1].chomp(".mp3")
+      
+      song = self.new
+      song.name = song_name
+      song.artist_name = artist_name
+      song
+  @@all << song 
+  
   end
 
 
 def self.destroy_all
   self.all.clear
-  end
-end
+  end 
 end 
   
 
