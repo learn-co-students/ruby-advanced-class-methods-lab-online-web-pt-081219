@@ -9,13 +9,13 @@ class Song
   
 
   def self.create
-
-  
+  song = song.new
+  song.save
+  song
   end 
 
   def save
     self.class.all << self
   end
 
-end 
-end 
+end
