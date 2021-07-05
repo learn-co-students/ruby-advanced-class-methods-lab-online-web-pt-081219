@@ -2,6 +2,9 @@ require 'spec_helper'
 require 'pry'
 
 describe "Song Class Methods" do
+  before(:each) do
+    Song.all.clear
+  end
   describe '.create' do
     it 'instantiates and saves the song, and it returns the new song that was created' do
       song = Song.create
@@ -57,7 +60,9 @@ describe "Song Class Methods" do
     end
     
     it 'creates a new Song object with the provided title if one doesn\'t already exist' do
+      #binding.pry
       blank_space = Song.find_by_name("Blank Space")
+      
       expect(blank_space).to be(nil)
 
       blank_space = Song.find_or_create_by_name("Blank Space")
